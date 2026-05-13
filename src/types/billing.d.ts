@@ -1,6 +1,6 @@
 export interface CheckoutSessionRequest {
-  customerId: string;
   priceId: string;
+  customerId: string;
   successUrl: string;
   cancelUrl: string;
 }
@@ -10,7 +10,18 @@ export interface PortalSessionRequest {
   returnUrl: string;
 }
 
-export interface WebhookEvent {
+export interface WebhookPayload {
+  id: string;
   type: string;
-  data: { object: Record<string, unknown> };
+  data: {
+    object: Record<string, unknown>;
+  };
+}
+
+export interface AuthenticatedRequest extends Express.Request {
+  user?: {
+    id: string;
+    email: string;
+    role: string;
+  };
 }
